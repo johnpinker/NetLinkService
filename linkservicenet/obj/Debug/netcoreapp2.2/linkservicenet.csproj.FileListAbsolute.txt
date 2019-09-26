@@ -1,0 +1,16 @@
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.deps.json
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.runtimeconfig.json
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.runtimeconfig.dev.json
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.dll
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.pdb
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.csprojAssemblyReference.cache
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.RazorAssemblyInfo.cache
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.RazorAssemblyInfo.cs
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.AssemblyInfoInputs.cache
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.AssemblyInfo.cs
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.RazorTargetAssemblyInfo.cache
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.dll
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/obj/Debug/netcoreapp2.2/linkservicenet.pdb
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/appsettings.Development.json
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/appsettings.json
+/Users/johnpinkerton/Code/PersonalGithub/NetLinkService/linkservicenet/bin/Debug/netcoreapp2.2/Properties/launchSettings.json

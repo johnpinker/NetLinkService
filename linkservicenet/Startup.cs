@@ -19,7 +19,15 @@ namespace linkservicenet
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            
+            var Builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+                .AddUserSecrets<Startup>()
+                .AddEnvironmentVariables();
+            Configuration = Builder.Build();
+            
+            //Configuration = configuration;
         }
 
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -29,13 +37,13 @@ namespace linkservicenet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.Configure<LinkDatabaseSettings>(
                 Configuration.GetSection(nameof(LinkDatabaseSettings)));
             services.AddSingleton<ILinkDatabaseSettings>( sp =>
                 sp.GetRequiredService<IOptions<LinkDatabaseSettings>>().Value);
-            //services.AddSingleton<LinkService>();
-            services.AddScoped<ILinkService, LinkService>();
+            services.AddSingleton<ILinkService, LinkService>();
+            //services.AddScoped<ILinkService, LinkService>();
             services.AddCors(options => {
                 options.AddPolicy(MyAllowSpecificOrigins, builder => {
                     builder.WithOrigins("http://localhost:5000", "http://localhost:8000")
@@ -43,12 +51,14 @@ namespace linkservicenet
                     .AllowAnyMethod();
                 });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            
+            if (env.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -58,8 +68,13 @@ namespace linkservicenet
                 app.UseHsts();
             }
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            //app.UseHttpsRedirection();
+            //app.UseMvc();
         }
     }
 }

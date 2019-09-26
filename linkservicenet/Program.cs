@@ -23,5 +23,7 @@ namespace linkservicenet
                     options.Listen(System.Net.IPAddress.Loopback, 5000);
                 })
                 .UseStartup<Startup>();
+
+        
     }
 }

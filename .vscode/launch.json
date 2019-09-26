@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/linkservicenet/bin/Debug/netcoreapp2.2/linkservicenet.dll",
+            "program": "${workspaceFolder}/linkservicenet/bin/Debug/netcoreapp3.0/linkservicenet.dll",
             "args": [],
             "cwd": "${workspaceFolder}/linkservicenet",
             "stopAtEntry": false,
