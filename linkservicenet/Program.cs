@@ -17,7 +17,7 @@ namespace linkservicenet
                     webBuilder.UseStartup<Startup>();
                     // the following is used to disable https
                     webBuilder.UseKestrel(options => {
-                        options.Listen(System.Net.IPAddress.Loopback, 5000);
+                        options.Listen(System.Net.IPAddress.Parse("0.0.0.0"), 5000);
                     });
                 });
 
