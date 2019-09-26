@@ -1,0 +1,204 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+      "title" : "Links API",
+      "description" : "Links API",
+      "contact" : {
+        "email" : "johnpinker@yahoo.com"
+      },
+      "license" : {
+        "name" : "Apache 2.0",
+        "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version" : "1.0.0-oas3"
+    },
+    "servers" : [ {
+      "url" : "https://virtserver.swaggerhub.com/johnpinker/links/1.0.0"
+    } ],
+    "tags" : [ {
+      "name" : "operation",
+      "description" : "Operations available to regular developers"
+    } ],
+    "paths" : {
+      "/links" : {
+        "get" : {
+          "summary" : "returns all links",
+          "responses" : {
+            "200" : {
+              "description" : "all links",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/Link"
+                    }
+                  }
+                }
+              }
+            },
+            "400" : {
+              "description" : "bad input parameter"
+            }
+          }
+        },
+        "post" : {
+          "summary" : "adds a Link",
+          "requestBody" : {
+            "description" : "user and href",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/body"
+                }
+              }
+            },
+            "required" : true
+          },
+          "responses" : {
+            "200" : {
+              "description" : "Link added",
+              "content" : {
+                "*/*" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Link"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/links/id" : {
+        "get" : {
+          "summary" : "returns single link",
+          "parameters" : [ {
+            "name" : "id",
+            "in" : "query",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "single link",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Link"
+                  }
+                }
+              }
+            },
+            "400" : {
+              "description" : "invalid input"
+            }
+          }
+        },
+        "put" : {
+          "summary" : "updates link",
+          "requestBody" : {
+            "description" : "user and href",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/body_1"
+                }
+              }
+            },
+            "required" : true
+          },
+          "responses" : {
+            "200" : {
+              "description" : "single link",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Link"
+                  }
+                }
+              }
+            },
+            "400" : {
+              "description" : "invalid input"
+            }
+          }
+        },
+        "delete" : {
+          "summary" : "deletes link",
+          "parameters" : [ {
+            "name" : "id",
+            "in" : "query",
+            "required" : false,
+            "style" : "form",
+            "explode" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "single link",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Link"
+                  }
+                }
+              }
+            },
+            "400" : {
+              "description" : "invalid input"
+            }
+          }
+        }
+      }
+    },
+    "components" : {
+      "schemas" : {
+        "Link" : {
+          "required" : [ "_id", "href", "name" ],
+          "type" : "object",
+          "properties" : {
+            "_id" : {
+              "type" : "string",
+              "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            },
+            "name" : {
+              "type" : "string",
+              "example" : "Site Name"
+            },
+            "href" : {
+              "type" : "string",
+              "example" : "http://www.site.com"
+            }
+          }
+        },
+        "body" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string"
+            },
+            "href" : {
+              "type" : "string"
+            }
+          }
+        },
+        "body_1" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string"
+            },
+            "href" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
