@@ -2,6 +2,6 @@
 
 To run locally you need to init your user secretes for the following values.
 
-"LinkDatabaseSettings:ConnectionString"
-"LinkDatabaseSettings:LinkCollectionName"
-"LinkDatabaseSettings:DatabaseName"
+* "LinkDatabaseSettings:ConnectionString"
+* "LinkDatabaseSettings:LinkCollectionName"
+* "LinkDatabaseSettings:DatabaseName"
