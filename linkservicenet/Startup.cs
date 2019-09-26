@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
 using linkservicenet.Models;
 using linkservicenet.Services;
 
@@ -21,13 +17,12 @@ namespace linkservicenet
         {
             
             var Builder = new ConfigurationBuilder()
+                .AddConfiguration(configuration)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
                 .AddUserSecrets<Startup>()
                 .AddEnvironmentVariables();
             Configuration = Builder.Build();
-            
-            //Configuration = configuration;
         }
 
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -37,13 +32,8 @@ namespace linkservicenet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            services.Configure<LinkDatabaseSettings>(
-                Configuration.GetSection(nameof(LinkDatabaseSettings)));
-            services.AddSingleton<ILinkDatabaseSettings>( sp =>
-                sp.GetRequiredService<IOptions<LinkDatabaseSettings>>().Value);
-            services.AddSingleton<ILinkService, LinkService>();
-            //services.AddScoped<ILinkService, LinkService>();
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllers();
             services.AddCors(options => {
                 options.AddPolicy(MyAllowSpecificOrigins, builder => {
                     builder.WithOrigins("http://localhost:5000", "http://localhost:8000")
@@ -51,6 +41,12 @@ namespace linkservicenet
                     .AllowAnyMethod();
                 });
             });
+            services.Configure<LinkDatabaseSettings>(
+                Configuration.GetSection(nameof(LinkDatabaseSettings)));
+            services.AddSingleton<ILinkDatabaseSettings>( sp =>
+                sp.GetRequiredService<IOptions<LinkDatabaseSettings>>().Value);
+            services.AddSingleton<ILinkService, LinkService>();
+
 
         }
 
@@ -58,7 +54,7 @@ namespace linkservicenet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             
-            if (env.EnvironmentName == "Development")
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -73,8 +69,6 @@ namespace linkservicenet
             {
                 endpoints.MapControllers();
             });
-            //app.UseHttpsRedirection();
-            //app.UseMvc();
         }
     }
 }
