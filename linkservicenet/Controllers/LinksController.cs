@@ -13,9 +13,11 @@ namespace linkservicenet.Controllers
     public class LinksController : ControllerBase {
 
             private readonly ILinkService _linkService;
-            public LinksController(ILinkService linkService)
+            private readonly ILoggerService _loggerService;
+            public LinksController(ILinkService linkService, ILoggerService loggerService)
             {
                 _linkService = linkService;
+                _loggerService = loggerService;
             }
 
             [HttpGet]
